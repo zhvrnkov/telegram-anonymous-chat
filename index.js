@@ -1,21 +1,19 @@
 const TelegramBot = require('node-telegram-bot-api'),
-		needle      = require('needle')
-		cheerio     = require("cheerio");
-		waterfall   = require('run-waterfall')
-		mysql       = require('mysql')
-		_           = require('underscore');
-const token = '442811093:AAFZVpi8kNipA0xDTwUss--_twzUhBYzW9k';
+		mysql       = require('mysql');
+
+const token = '...';
+
 const bot = new TelegramBot(token, {polling: true});
+
 const pool = mysql.createPool({
-	host		: "localhost",
-	database : "node",
-	user		: "root",
-	password : ""
+	host		: "...",
+	database : "...",
+	user		: "...",
+	password : "..."
 });
 
 bot.onText(/\/start/, (msg) => {
-
-	pool.query('select * from telegram', (err, res) => { // (2)create or connect to the chat room
+	pool.query('select * from telegram', (err, res) => {
 		if(err) {
 			throw err;
 		}
